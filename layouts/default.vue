@@ -5,11 +5,11 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col max-w-5xl mx-auto">
-    <!-- <NavBar /> -->
-    <div class="grow pb-16">
+  <div class="min-h-screen flex flex-col max-w-5xl mx-auto rounded">
+    <NavBar />
+    <!-- <div class="grow pb-16">
       <slot />
-    </div>
+    </div> -->
     <!-- <Footer /> -->
   </div>
 </template>
