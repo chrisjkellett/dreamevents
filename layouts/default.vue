@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NavBar from "~/components/NavBar.vue";
+
 useHead({
   title: "Dream travels",
 });
