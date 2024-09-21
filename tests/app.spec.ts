@@ -5,6 +5,6 @@ import app from "~/app.vue";
 describe("First test", () => {
   it("should render", async () => {
     const wrapper = await mountSuspended(app);
-    console.log(wrapper.html());
+    console.log(wrapper.find(".initial-view").html());
   });
 });
