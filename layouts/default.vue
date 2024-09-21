@@ -5,7 +5,7 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col max-w-5xl mx-auto">
     <!-- <NavBar /> -->
     <div class="grow pb-16">
       <slot />
