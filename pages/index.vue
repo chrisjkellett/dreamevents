@@ -1,3 +1,5 @@
 <template>
-  <div class="p-4 border">hello from index.vue</div>
+  <div class="p-4 border">
+    <HelloWorld />
+  </div>
 </template>
