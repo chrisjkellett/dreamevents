@@ -15,12 +15,12 @@ const tripsFilteredBySearch = computed(() => {
 
 const filteredTrips = computed(() => {
   if (filter.value === "upcoming") {
-    return trips.value.filter((t) => t.status === "todo");
+    return tripsFilteredBySearch.value.filter((t) => t.status === "todo");
   }
   if (filter.value === "completed") {
-    return trips.value.filter((t) => t.status === "done");
+    return tripsFilteredBySearch.value.filter((t) => t.status === "done");
   }
-  return trips.value;
+  return tripsFilteredBySearch.value;
 });
 
 provide("data", {
