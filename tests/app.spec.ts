@@ -1,43 +1,31 @@
-import { mountSuspended, registerEndpoint } from "@nuxt/test-utils/runtime";
-import { it, describe, expect, afterEach } from "vitest";
-import app from "~/app.vue";
-import data from "./data.json";
+import { it, describe, afterEach } from "vitest";
+import PageObject from "./app.page-object";
 
 describe("First test", () => {
-  const URL =
-    "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels";
-
-  registerEndpoint(URL, () => data);
-
   afterEach(() => {
     clearNuxtState();
   });
 
   it("can filter between all, upcoming and completed", async () => {
-    const wrapper = await mountSuspended(app);
+    const page = await PageObject.create();
+    page.assertHasTripsVisible(3);
 
-    expect(wrapper.findAll(".card")).toHaveLength(3);
+    await page.applyFilter("upcoming");
+    page.assertHasTripsVisible(1);
 
-    await wrapper.find("button#upcoming").trigger("click");
-    expect(wrapper.findAll(".card")).toHaveLength(1);
-
-    await wrapper.find("button#completed").trigger("click");
-    expect(wrapper.findAll(".card")).toHaveLength(2);
+    await page.applyFilter("completed");
+    page.assertHasTripsVisible(2);
   });
 
   it("can search by title", async () => {
-    const wrapper = await mountSuspended(app);
-
-    await wrapper.find("input#search-trips").setValue("2nd title");
-
-    expect(wrapper.findAll(".card")).toHaveLength(1);
+    const page = await PageObject.create();
+    await page.applySearch("2nd title");
+    page.assertHasTripsVisible(1);
   });
 
   it("can search by description", async () => {
-    const wrapper = await mountSuspended(app);
-
-    await wrapper.find("input#search-trips").setValue("key phrase");
-
-    expect(wrapper.find(".card").text()).toContain("trip with a key phrase");
+    const page = await PageObject.create();
+    await page.applySearch("key phrase");
+    page.assertCardContent(1, "trip with a key phrase");
   });
 });
