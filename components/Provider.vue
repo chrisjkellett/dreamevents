@@ -1,9 +1,9 @@
 <script setup>
-const data = await $fetch(
+const { data: trips } = useFetch(
   "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels"
 );
 
-provide("data", data);
+provide("trips", trips);
 </script>
 
 <template>

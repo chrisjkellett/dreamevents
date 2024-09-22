@@ -1,14 +1,7 @@
-<script setup lang="ts">
-interface BaseTrip {
-  id: number;
-  title: string;
-  photo_url: string;
-  description: string;
-}
-
-defineProps<{
-  trip: BaseTrip;
-}>();
+<script setup>
+defineProps(["trip"]);
 </script>
 
-<template>card</template>
+<template>
+  <div>{{ trip }}</div>
+</template>
