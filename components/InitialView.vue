@@ -6,7 +6,7 @@ const { trips } = useData();
 </script>
 
 <template>
-  <div class="initial-view flex flex-col gap-4" v-if="trips">
+  <div class="initial-view flex flex-col gap-4 rounded-2xl" v-if="trips">
     <Card v-for="trip in trips" :key="trip.id" :trip="trip" />
   </div>
 </template>
