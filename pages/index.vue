@@ -8,6 +8,7 @@ const { filteredTrips } = useData();
 
 <template>
   <div class="initial-view flex flex-col gap-6" v-if="filteredTrips">
+    <TripSearch />
     <TripButtonGroup />
 
     <Card
