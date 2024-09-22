@@ -9,7 +9,7 @@ describe("First test", () => {
       {
         id: 1,
         title: "SOME DESTINATION",
-        description: "SOME DESCRIPTION",
+        description: "SOME DESCRIPTION. AND THEN A LONGER ONE.",
         photo_url: "https://fakeurl.com",
       },
     ]

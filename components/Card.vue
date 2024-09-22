@@ -5,7 +5,11 @@ interface BaseTrip {
   photo_url: string;
 }
 
-defineProps<{ trip: BaseTrip }>();
+const props = defineProps<{ trip: BaseTrip }>();
+
+const shortDescription = computed(() => {
+  return props.trip.description.split(".")[0] + "...";
+});
 </script>
 
 <template>
@@ -19,7 +23,7 @@ defineProps<{ trip: BaseTrip }>();
     </div>
     <div class="w-1/2">
       <h3>{{ trip.title }}</h3>
-      <p>{{ trip.description }}</p>
+      <p>{{ shortDescription }}</p>
     </div>
   </div>
 </template>
