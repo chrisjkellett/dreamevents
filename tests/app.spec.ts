@@ -10,18 +10,30 @@ describe("First test", () => {
         id: 1,
         title: "SOME DESTINATION",
         description: "SOME DESCRIPTION. AND THEN A LONGER ONE.",
-        photo_url: "https://fakeurl.com",
+        photo_url: "https://fakeurl.com/1",
+        status: "todo",
+      },
+      {
+        id: 2,
+        title: "SOME COMPLETED DESTINATION",
+        description: "SOME COMPLETED DESCRIPTION. AND THEN A LONGER ONE.",
+        photo_url: "https://fakeurl.com/2",
+        status: "done",
       },
     ]
   );
 
-  it("should render", async () => {
-    const wrapper = await mountSuspended(app);
-    // console.log(wrapper.find(".initial-view").html());
-  });
-
   it("can filter between all, upcoming and completed", async () => {
     const wrapper = await mountSuspended(app);
+    expect(wrapper.findAll(".card")).toHaveLength(2);
+
     await wrapper.find("button#upcoming").trigger("click");
+    expect(wrapper.findAll(".card")).toHaveLength(1);
+
+    await wrapper.find("button#completed").trigger("click");
+    expect(wrapper.findAll(".card")).toHaveLength(1);
+    expect(wrapper.find(".card").text()).toContain(
+      "SOME COMPLETED DESCRIPTION"
+    );
   });
 });
