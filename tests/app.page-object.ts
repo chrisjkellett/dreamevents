@@ -17,7 +17,7 @@ export default class PageObject {
     this.wrapper = wrapper;
   }
 
-  static async create() {
+  static async create(): Promise<PageObject> {
     const wrapper = await mountSuspended(app);
     const po = new this(wrapper);
     return po;
