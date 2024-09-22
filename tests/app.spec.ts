@@ -5,7 +5,14 @@ import app from "~/app.vue";
 describe("First test", () => {
   registerEndpoint(
     "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels",
-    () => ["foobar"]
+    () => [
+      {
+        id: 1,
+        title: "SOME DESTINATION",
+        description: "SOME DESCRIPTION",
+        photo_url: "https://fakeurl.com",
+      },
+    ]
   );
 
   it("should render", async () => {
