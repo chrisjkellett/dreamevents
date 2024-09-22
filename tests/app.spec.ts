@@ -19,4 +19,9 @@ describe("First test", () => {
     const wrapper = await mountSuspended(app);
     // console.log(wrapper.find(".initial-view").html());
   });
+
+  it("can filter between all, upcoming and completed", async () => {
+    const wrapper = await mountSuspended(app);
+    await wrapper.find("button#upcoming").trigger("click");
+  });
 });
