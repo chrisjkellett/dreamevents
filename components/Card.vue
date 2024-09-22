@@ -15,7 +15,7 @@ const shortDescription = computed(() => {
 </script>
 
 <template>
-  <div class="border flex h-52 rounded-2xl">
+  <div class="border flex h-52 rounded-2xl card">
     <div class="w-1/2">
       <img
         :src="trip.photo_url"

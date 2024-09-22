@@ -5,9 +5,19 @@ const { data: trips } = useFetch(
 
 const filter = useState("filter", () => "all");
 
+const filteredTrips = computed(() => {
+  if (filter.value === "upcoming") {
+    return trips.value.filter((t) => t.status === "todo");
+  }
+  if (filter.value === "completed") {
+    return trips.value.filter((t) => t.status === "done");
+  }
+  return trips.value;
+});
+
 provide("data", {
-  trips,
   filter,
+  filteredTrips,
 });
 </script>
 

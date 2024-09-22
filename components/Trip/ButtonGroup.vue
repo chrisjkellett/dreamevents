@@ -11,6 +11,7 @@ import TripFilterButton from "./FilterButton.vue";
     >
       <TripFilterButton
         v-for="label in ['all', 'upcoming', 'completed']"
+        :id="label"
         :key="label"
         :label="label"
       />
