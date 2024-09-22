@@ -3,5 +3,5 @@ defineProps(["trip"]);
 </script>
 
 <template>
-  <div>{{ trip }}</div>
+  <div class="border">{{ trip }}</div>
 </template>

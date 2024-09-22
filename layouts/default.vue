@@ -9,7 +9,7 @@ useHead({
 <template>
   <div class="min-h-screen flex flex-col max-w-5xl mx-auto rounded mt-10">
     <NavBar />
-    <div class="grow pb-16 border">
+    <div class="grow pb-16">
       <slot />
     </div>
   </div>
