@@ -7,6 +7,10 @@ const { trips } = useData();
 
 <template>
   <div class="initial-view flex flex-col gap-4 rounded-2xl" v-if="trips">
-    <Card v-for="trip in trips" :key="trip.id" :trip="trip" />
+    <Card
+      v-for="{ id, title, description, photo_url } in trips"
+      :key="id"
+      :trip="{ title, description, photo_url }"
+    />
   </div>
 </template>

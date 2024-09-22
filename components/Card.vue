@@ -1,5 +1,11 @@
-<script setup>
-defineProps(["trip"]);
+<script setup lang="ts">
+interface BaseTrip {
+  title: string;
+  description: string;
+  photo_url: string;
+}
+
+defineProps<{ trip: BaseTrip }>();
 </script>
 
 <template>
@@ -11,6 +17,9 @@ defineProps(["trip"]);
         class="h-full w-full object-cover"
       />
     </div>
-    <div class="w-1/2">details</div>
+    <div class="w-1/2">
+      <h3>{{ trip.title }}</h3>
+      <p>{{ trip.description }}</p>
+    </div>
   </div>
 </template>
