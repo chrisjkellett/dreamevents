@@ -35,5 +35,18 @@ describe("First test", () => {
     expect(wrapper.find(".card").text()).toContain(
       "SOME COMPLETED DESCRIPTION"
     );
+
+    wrapper.unmount();
+  });
+
+  it("can search by title", async () => {
+    const wrapper = await mountSuspended(app);
+
+    // facing some issue with app state being leftover from previous test
+    await wrapper.find("button#all").trigger("click");
+
+    await wrapper.find("input#search-trips").setValue("SOME DESTINATION");
+
+    expect(wrapper.findAll(".card")).toHaveLength(1);
   });
 });

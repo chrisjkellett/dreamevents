@@ -8,6 +8,7 @@ const { searchText } = useData();
   <div class="flex justify-center">
     <div class="grow max-w-[360px]">
       <UInput
+        id="search-trips"
         v-model="searchText"
         color="white"
         size="lg"
