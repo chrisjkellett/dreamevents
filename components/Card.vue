@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import XLinkButton from "~/components/X/LinkButton.vue";
+
 interface BaseTrip {
   title: string;
   description: string;
@@ -21,9 +23,16 @@ const shortDescription = computed(() => {
         class="h-full w-full object-cover"
       />
     </div>
-    <div class="w-1/2">
-      <h3>{{ trip.title }}</h3>
+    <div class="w-1/2 flex flex-col justify-between p-6">
+      <h3 class="text-2xl font-semibold">{{ trip.title }}</h3>
       <p>{{ shortDescription }}</p>
+      <div class="flex items-center justify-between">
+        <XLinkButton>See trip details</XLinkButton>
+        <div class="flex gap-4">
+          <XLinkButton>Edit</XLinkButton>
+          <XLinkButton>Delete</XLinkButton>
+        </div>
+      </div>
     </div>
   </div>
 </template>
