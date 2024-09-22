@@ -1,3 +1,7 @@
+<script setup>
+import TripFilterButton from "./FilterButton.vue";
+</script>
+
 <template>
   <div class="flex justify-center">
     <UButtonGroup
@@ -5,9 +9,11 @@
       orientation="horizontal"
       :ui="{ rounded: 'rounded-2xl' }"
     >
-      <UButton label="All" color="white" />
-      <UButton label="Completed" color="white" />
-      <UButton label="Upcoming" color="white" />
+      <TripFilterButton
+        v-for="label in ['all', 'completed', 'upcoming']"
+        :key="label"
+        :label="label"
+      />
     </UButtonGroup>
   </div>
 </template>

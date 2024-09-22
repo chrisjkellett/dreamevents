@@ -1,9 +1,7 @@
 import { inject } from "vue";
 
 export default function useData() {
-  const trips = inject("trips");
+  const data = inject("data");
 
-  return {
-    trips,
-  };
+  return data;
 }

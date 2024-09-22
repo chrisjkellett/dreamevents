@@ -3,7 +3,12 @@ const { data: trips } = useFetch(
   "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels"
 );
 
-provide("trips", trips);
+const filter = useState("filter", () => "all");
+
+provide("data", {
+  trips,
+  filter,
+});
 </script>
 
 <template>
