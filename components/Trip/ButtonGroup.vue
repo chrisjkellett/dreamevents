@@ -10,7 +10,7 @@ import TripFilterButton from "./FilterButton.vue";
       :ui="{ rounded: 'rounded-2xl' }"
     >
       <TripFilterButton
-        v-for="label in ['all', 'completed', 'upcoming']"
+        v-for="label in ['all', 'upcoming', 'completed']"
         :key="label"
         :label="label"
       />
