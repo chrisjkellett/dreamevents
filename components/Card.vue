@@ -15,12 +15,12 @@ const shortDescription = computed(() => {
 </script>
 
 <template>
-  <div class="border flex h-52">
+  <div class="border flex h-52 rounded-2xl">
     <div class="w-1/2">
       <img
         :src="trip.photo_url"
         alt="trip img"
-        class="h-full w-full object-cover"
+        class="h-full w-full object-cover rounded-tl-2xl rounded-bl-2xl"
       />
     </div>
     <div class="w-1/2 flex flex-col justify-between p-6">
