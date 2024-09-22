@@ -9,7 +9,8 @@ const searchText = useState("searchText", () => "");
 
 const tripsFilteredBySearch = computed(() => {
   return trips.value.filter((t) => {
-    return new RegExp(searchText.value, "i").exec(t.title);
+    const regex = new RegExp(searchText.value, "i");
+    return regex.exec(t.title) || regex.exec(t.description);
   });
 });
 

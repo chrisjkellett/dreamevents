@@ -1,52 +1,43 @@
 import { mountSuspended, registerEndpoint } from "@nuxt/test-utils/runtime";
-import { it, describe, expect } from "vitest";
+import { it, describe, expect, afterEach } from "vitest";
 import app from "~/app.vue";
+import data from "./data.json";
 
 describe("First test", () => {
-  registerEndpoint(
-    "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels",
-    () => [
-      {
-        id: 1,
-        title: "SOME DESTINATION",
-        description: "SOME DESCRIPTION. AND THEN A LONGER ONE.",
-        photo_url: "https://fakeurl.com/1",
-        status: "todo",
-      },
-      {
-        id: 2,
-        title: "SOME COMPLETED DESTINATION",
-        description: "SOME COMPLETED DESCRIPTION. AND THEN A LONGER ONE.",
-        photo_url: "https://fakeurl.com/2",
-        status: "done",
-      },
-    ]
-  );
+  const URL =
+    "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels";
+
+  registerEndpoint(URL, () => data);
+
+  afterEach(() => {
+    clearNuxtState();
+  });
 
   it("can filter between all, upcoming and completed", async () => {
     const wrapper = await mountSuspended(app);
-    expect(wrapper.findAll(".card")).toHaveLength(2);
+
+    expect(wrapper.findAll(".card")).toHaveLength(3);
 
     await wrapper.find("button#upcoming").trigger("click");
     expect(wrapper.findAll(".card")).toHaveLength(1);
 
     await wrapper.find("button#completed").trigger("click");
-    expect(wrapper.findAll(".card")).toHaveLength(1);
-    expect(wrapper.find(".card").text()).toContain(
-      "SOME COMPLETED DESCRIPTION"
-    );
-
-    wrapper.unmount();
+    expect(wrapper.findAll(".card")).toHaveLength(2);
   });
 
   it("can search by title", async () => {
     const wrapper = await mountSuspended(app);
 
-    // facing some issue with app state being leftover from previous test
-    await wrapper.find("button#all").trigger("click");
-
-    await wrapper.find("input#search-trips").setValue("SOME DESTINATION");
+    await wrapper.find("input#search-trips").setValue("2nd title");
 
     expect(wrapper.findAll(".card")).toHaveLength(1);
+  });
+
+  it("can search by description", async () => {
+    const wrapper = await mountSuspended(app);
+
+    await wrapper.find("input#search-trips").setValue("key phrase");
+
+    expect(wrapper.find(".card").text()).toContain("trip with a key phrase");
   });
 });
