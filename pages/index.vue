@@ -8,14 +8,20 @@ const { filteredTrips } = useData();
 </script>
 
 <template>
-  <div class="initial-view flex flex-col gap-6" v-if="filteredTrips">
+  <div class="initial-view flex flex-col gap-6">
     <TripSearch />
     <TripButtonGroup />
 
-    <Card
-      v-for="{ id, title, description, photo_url } in filteredTrips"
-      :key="id"
-      :trip="{ title, description, photo_url }"
-    />
+    <template v-if="filteredTrips.length">
+      <Card
+        v-for="{ id, title, description, photo_url } in filteredTrips"
+        :key="id"
+        :trip="{ title, description, photo_url }"
+      />
+    </template>
+
+    <div v-else class="flex justify-center">
+      <p>No trips found. Try a less specific search.</p>
+    </div>
   </div>
 </template>
