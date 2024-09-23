@@ -21,6 +21,7 @@ const { filteredTrips, showDetails } = useData();
         :key="id"
         :trip="{ title, description, photo_url }"
         @click="showDetails = id"
+        @delete="console.log('delete')"
       />
     </template>
 

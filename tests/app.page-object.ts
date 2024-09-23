@@ -43,6 +43,10 @@ export default class PageObject {
     await nextTick();
   }
 
+  async deleteTrip(n: number) {
+    await this.wrapper.find("button#delete-trip").trigger("click");
+  }
+
   assertHasTripsVisible(n: number) {
     expect(this.wrapper.findAll(".card")).toHaveLength(n);
   }

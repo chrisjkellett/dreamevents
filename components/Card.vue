@@ -32,7 +32,9 @@ const shortDescription = computed(() => {
         <XLinkButton>See trip details</XLinkButton>
         <div class="flex gap-4">
           <XLinkButton>Edit</XLinkButton>
-          <XLinkButton>Delete</XLinkButton>
+          <XLinkButton id="delete-trip" @click.stop="$emit('delete')">
+            Delete
+          </XLinkButton>
         </div>
       </div>
     </div>

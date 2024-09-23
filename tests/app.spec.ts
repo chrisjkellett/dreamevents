@@ -34,4 +34,9 @@ describe("First test", () => {
     await page.clickCard(1);
     page.assertModalVisible();
   });
+
+  it("can delete a trip", async () => {
+    const page = await PageObject.create();
+    await page.deleteTrip(1);
+  });
 });
