@@ -1,5 +1,5 @@
 <script setup>
-import Logo from "~/components/Logo.vue";
+import Logo from "~/components/Nav/Logo.vue";
 import XButton from "~/components/X/Button.vue";
 </script>
 
