@@ -11,6 +11,8 @@ const searchText = useState("searchText", () => "");
 
 const showDetails = useState("show-details", () => undefined);
 
+const showForm = useState("show-form", () => 0);
+
 const tripsFilteredBySearch = computed<Trip[]>(() => {
   return (
     trips.value?.filter((t: Trip) => {
@@ -40,13 +42,19 @@ function deleteTrip(id: number): void {
   trips.value = trips.value?.filter((t: Trip) => t.id !== id) || [];
 }
 
+function editTrip(id: number): void {
+  showForm.value = id;
+}
+
 provide("data", {
   filter,
   filteredTrips,
   searchText,
   showDetails,
+  showForm,
 
   deleteTrip,
+  editTrip,
 });
 </script>
 

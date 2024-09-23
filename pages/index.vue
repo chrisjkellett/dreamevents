@@ -13,5 +13,6 @@ import TripModal from "@/components/Trip/Modal.vue";
     <TripButtonGroup />
     <TripCards />
     <TripModal />
+    <TripForm />
   </div>
 </template>

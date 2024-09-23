@@ -2,7 +2,7 @@
 import useData from "~/composables/useData";
 import Card from "~/components/Trip/Card.vue";
 
-const { filteredTrips, showDetails, deleteTrip } = useData();
+const { filteredTrips, showDetails, deleteTrip, editTrip } = useData();
 </script>
 
 <template>
@@ -13,7 +13,7 @@ const { filteredTrips, showDetails, deleteTrip } = useData();
       :trip="trip"
       @click="showDetails = trip.id"
       @delete="() => deleteTrip(trip.id)"
-      @edit="console.log('editt')"
+      @edit="editTrip(trip.id)"
     />
   </div>
 
