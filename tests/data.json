@@ -4,20 +4,23 @@
     "title": "1st title",
     "description": "upcoming event",
     "photo_url": "https://fakeurl.com/1",
-    "status": "todo"
+    "status": "todo",
+    "itinerary": []
   },
   {
     "id": 2,
     "title": "2nd title",
     "description": "completed event",
     "photo_url": "https://fakeurl.com/2",
-    "status": "done"
+    "status": "done",
+    "itinerary": []
   },
   {
     "id": 3,
     "title": "3rd title",
     "description": "a trip with a key phrase",
     "photo_url": "https://fakeurl.com/3",
-    "status": "done"
+    "status": "done",
+    "itinerary": []
   }
 ]
