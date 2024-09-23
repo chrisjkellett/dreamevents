@@ -9,5 +9,6 @@ defineEmits<{
   <UIcon
     name="i-heroicons:x-circle"
     class="w-7 h-7 absolute top-4 right-4 text-white cursor-pointer"
+    @click="$emit('click')"
   />
 </template>
