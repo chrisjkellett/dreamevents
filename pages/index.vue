@@ -1,12 +1,9 @@
 <script setup>
-import useData from "~/composables/useData";
-import Card from "~/components/Card.vue";
+import TripCards from "~/components/Trip/Cards.vue";
 import TripButtonGroup from "~/components/Trip/ButtonGroup.vue";
 import TripSearch from "~/components/Trip/Search.vue";
 import TripTitle from "~/components/Trip/Title.vue";
 import TripModal from "@/components/Trip/Modal.vue";
-
-const { filteredTrips, showDetails, deleteTrip } = useData();
 </script>
 
 <template>
@@ -14,21 +11,7 @@ const { filteredTrips, showDetails, deleteTrip } = useData();
     <TripTitle />
     <TripSearch />
     <TripButtonGroup />
-
-    <template v-if="filteredTrips.length">
-      <Card
-        v-for="{ id, title, description, photo_url } in filteredTrips"
-        :key="id"
-        :trip="{ title, description, photo_url }"
-        @click="showDetails = id"
-        @delete="() => deleteTrip(id)"
-      />
-    </template>
-
-    <div v-else class="flex justify-center">
-      <p>No trips found. Try a less specific search.</p>
-    </div>
-
-    <TripModal v-if="!!showDetails" />
+    <TripCards />
+    <TripModal />
   </div>
 </template>

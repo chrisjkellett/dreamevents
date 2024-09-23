@@ -13,7 +13,7 @@ function onClose() {
 </script>
 
 <template>
-  <div class="trip-modal">
+  <div v-if="!!showDetails" class="trip-modal">
     <UModal
       :model-value="!!showDetails"
       @update:model-value="onClose"

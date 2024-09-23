@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import XLinkButton from "./X/LinkButton.vue";
+import XLinkButton from "~/components/X/LinkButton.vue";
 
 interface BaseTrip {
   title: string;
