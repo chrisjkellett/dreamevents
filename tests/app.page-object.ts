@@ -1,6 +1,7 @@
 import { mountSuspended, registerEndpoint } from "@nuxt/test-utils/runtime";
 import { expect } from "vitest";
 import { VueWrapper } from "@vue/test-utils";
+import { h } from "vue";
 
 import app from "~/app.vue";
 import data from "./data.json";
@@ -18,7 +19,13 @@ export default class PageObject {
   }
 
   static async create(): Promise<PageObject> {
-    const wrapper = await mountSuspended(app);
+    const wrapper = await mountSuspended(app, {
+      global: {
+        stubs: {
+          UModal: true,
+        },
+      },
+    });
     const po = new this(wrapper);
     return po;
   }
@@ -33,6 +40,7 @@ export default class PageObject {
 
   async clickCard(n: number) {
     await this.wrapper.findAll(".card")[n - 1].trigger("click");
+    await nextTick();
   }
 
   assertHasTripsVisible(n: number) {
@@ -41,5 +49,9 @@ export default class PageObject {
 
   assertCardContent(n: number, text: string) {
     expect(this.wrapper.findAll(".card")[n - 1].text()).toContain(text);
+  }
+
+  assertModalVisible() {
+    expect(this.wrapper.find(".trip-modal").exists()).toBe(true);
   }
 }

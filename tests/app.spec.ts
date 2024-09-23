@@ -32,5 +32,6 @@ describe("First test", () => {
   it("can open modal to see all details of a trip", async () => {
     const page = await PageObject.create();
     await page.clickCard(1);
+    page.assertModalVisible();
   });
 });
