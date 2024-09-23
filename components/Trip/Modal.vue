@@ -1,6 +1,7 @@
 <script setup>
 import useData from "~/composables/useData";
 import XModal from "~/components/X/Modal.vue";
+import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
 
 const { showDetails, filteredTrips } = useData();
 
@@ -16,14 +17,7 @@ function onClose() {
 <template>
   <div v-if="!!showDetails" class="trip-modal">
     <XModal :show="!!showDetails" @update:show="onClose">
-      <div
-        class="w-7 h-7 absolute top-4 right-4 rounded-full bg-slate-800"
-      ></div>
-      <UIcon
-        name="i-heroicons:x-circle"
-        class="w-7 h-7 absolute top-4 right-4 text-white cursor-pointer"
-        @click="onClose"
-      />
+      <ModalCloseButton @click="onClose" />
       <img
         :src="trip.photo_url"
         alt="trip img"

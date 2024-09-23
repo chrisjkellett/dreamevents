@@ -3,7 +3,8 @@ import TripCards from "~/components/Trip/Cards.vue";
 import TripButtonGroup from "~/components/Trip/ButtonGroup.vue";
 import TripSearch from "~/components/Trip/Search.vue";
 import TripTitle from "~/components/Trip/Title.vue";
-import TripModal from "@/components/Trip/Modal.vue";
+import TripModal from "~/components/Trip/Modal.vue";
+import TripForm from "~/components/Trip/Form.vue";
 </script>
 
 <template>
