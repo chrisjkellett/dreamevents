@@ -28,4 +28,9 @@ describe("First test", () => {
     await page.applySearch("key phrase");
     page.assertCardContent(1, "trip with a key phrase");
   });
+
+  it("can open modal to see all details of a trip", async () => {
+    const page = await PageObject.create();
+    await page.clickCard(1);
+  });
 });

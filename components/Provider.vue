@@ -7,6 +7,8 @@ const filter = useState("filter", () => "all");
 
 const searchText = useState("searchText", () => "");
 
+const showDetails = useState("show-details", () => undefined);
+
 const tripsFilteredBySearch = computed(() => {
   return trips.value.filter((t) => {
     const regex = new RegExp(searchText.value, "i");
@@ -28,6 +30,7 @@ provide("data", {
   filter,
   filteredTrips,
   searchText,
+  showDetails,
 });
 </script>
 

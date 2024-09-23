@@ -31,6 +31,10 @@ export default class PageObject {
     await this.wrapper.find("input#search-trips").setValue(text);
   }
 
+  async clickCard(n: number) {
+    await this.wrapper.findAll(".card")[n - 1].trigger("click");
+  }
+
   assertHasTripsVisible(n: number) {
     expect(this.wrapper.findAll(".card")).toHaveLength(n);
   }
