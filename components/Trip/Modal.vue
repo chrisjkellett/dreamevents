@@ -2,6 +2,7 @@
 import useData from "~/composables/useData";
 import XModal from "~/components/X/Modal.vue";
 import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
+import Itinerary from "~/components/Trip/Itinerary.vue";
 
 const { showDetails, filteredTrips } = useData();
 
@@ -27,25 +28,7 @@ function onClose() {
         <h3 class="text-2xl font-semibold">{{ trip.title }}</h3>
         <p>{{ trip.description }}</p>
         <UDivider />
-        <div v-if="trip.itinerary.length" class="flex flex-col gap-4">
-          <h3 class="text-xl">Itinerary</h3>
-          <ol class="pl-4 relative border-s border-gray-300 ml-4">
-            <li
-              v-for="{ day, location, description } in trip.itinerary"
-              class="mb-10 ms-4 py-2"
-            >
-              <div
-                class="absolute w-3 h-3 bg-gray-300 rounded-full mt-1.5 -start-1.5 border border-white"
-              ></div>
-              <div class="flex flex-col gap-2">
-                <h5 class="font-semibold text-lg">
-                  Day {{ day }}: {{ location }}
-                </h5>
-                <p>{{ description }}</p>
-              </div>
-            </li>
-          </ol>
-        </div>
+        <Itinerary :itinerary="trip.itinerary" />
       </div>
     </XModal>
   </div>
