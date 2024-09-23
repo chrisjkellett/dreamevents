@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { data: trips } = useFetch(
+import type { Trip } from "~/types/trips";
+
+const { data: trips } = useFetch<Trip[]>(
   "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels"
 );
 
@@ -10,7 +12,7 @@ const searchText = useState("searchText", () => "");
 const showDetails = useState("show-details", () => undefined);
 
 const tripsFilteredBySearch = computed(() => {
-  return trips.value.filter((t) => {
+  return trips.value?.filter((t: Trip) => {
     const regex = new RegExp(searchText.value, "i");
     return regex.exec(t.title) || regex.exec(t.description);
   });
@@ -18,16 +20,20 @@ const tripsFilteredBySearch = computed(() => {
 
 const filteredTrips = computed(() => {
   if (filter.value === "upcoming") {
-    return tripsFilteredBySearch.value.filter((t) => t.status === "todo");
+    return tripsFilteredBySearch.value?.filter(
+      (t: Trip) => t.status === "todo"
+    );
   }
   if (filter.value === "completed") {
-    return tripsFilteredBySearch.value.filter((t) => t.status === "done");
+    return tripsFilteredBySearch.value?.filter(
+      (t: Trip) => t.status === "done"
+    );
   }
   return tripsFilteredBySearch.value;
 });
 
 function deleteTrip(id: number) {
-  trips.value = trips.value.filter((t) => t.id !== id);
+  trips.value = trips.value?.filter((t: Trip) => t.id !== id) || [];
 }
 
 provide("data", {
