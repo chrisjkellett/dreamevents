@@ -6,7 +6,7 @@ const { filteredTrips, showDetails, deleteTrip } = useData();
 </script>
 
 <template>
-  <div v-if="filteredTrips.length">
+  <div v-if="filteredTrips.length" class="flex flex-col gap-4">
     <Card
       v-for="trip in filteredTrips"
       :key="trip.id"
