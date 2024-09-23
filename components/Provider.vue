@@ -11,28 +11,32 @@ const searchText = useState("searchText", () => "");
 
 const showDetails = useState("show-details", () => undefined);
 
-const tripsFilteredBySearch = computed(() => {
-  return trips.value?.filter((t: Trip) => {
-    const regex = new RegExp(searchText.value, "i");
-    return regex.exec(t.title) || regex.exec(t.description);
-  });
+const tripsFilteredBySearch = computed<Trip[]>(() => {
+  return (
+    trips.value?.filter((t: Trip) => {
+      const regex = new RegExp(searchText.value, "i");
+      return regex.exec(t.title) || regex.exec(t.description);
+    }) || []
+  );
 });
 
-const filteredTrips = computed(() => {
+const filteredTrips = computed<Trip[]>(() => {
   if (filter.value === "upcoming") {
-    return tripsFilteredBySearch.value?.filter(
-      (t: Trip) => t.status === "todo"
+    return (
+      tripsFilteredBySearch.value?.filter((t: Trip) => t.status === "todo") ||
+      []
     );
   }
   if (filter.value === "completed") {
-    return tripsFilteredBySearch.value?.filter(
-      (t: Trip) => t.status === "done"
+    return (
+      tripsFilteredBySearch.value?.filter((t: Trip) => t.status === "done") ||
+      []
     );
   }
-  return tripsFilteredBySearch.value;
+  return tripsFilteredBySearch.value || [];
 });
 
-function deleteTrip(id: number) {
+function deleteTrip(id: number): void {
   trips.value = trips.value?.filter((t: Trip) => t.id !== id) || [];
 }
 
