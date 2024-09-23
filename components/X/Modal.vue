@@ -1,12 +1,15 @@
 <script setup lang="ts">
 defineProps<{ show: boolean }>();
-defineEmits(["update:show"]);
+
+defineEmits<{
+  (e: "update:show", value: boolean): void;
+}>();
 </script>
 
 <template>
   <UModal
     :model-value="show"
-    @update:model-value="$emit('update:show')"
+    @update:model-value="$emit('update:show', $event)"
     :ui="{
       width: 'w-full md:max-w-xl',
       margin: 'sm:my-4',
