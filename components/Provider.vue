@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { data: trips } = useFetch(
   "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels"
 );
@@ -26,11 +26,17 @@ const filteredTrips = computed(() => {
   return tripsFilteredBySearch.value;
 });
 
+function deleteTrip(id: number) {
+  trips.value = trips.value.filter((t) => t.id !== id);
+}
+
 provide("data", {
   filter,
   filteredTrips,
   searchText,
   showDetails,
+
+  deleteTrip,
 });
 </script>
 

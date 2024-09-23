@@ -6,7 +6,7 @@ import TripSearch from "~/components/Trip/Search.vue";
 import TripTitle from "~/components/Trip/Title.vue";
 import TripModal from "@/components/Trip/Modal.vue";
 
-const { filteredTrips, showDetails } = useData();
+const { filteredTrips, showDetails, deleteTrip } = useData();
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const { filteredTrips, showDetails } = useData();
         :key="id"
         :trip="{ title, description, photo_url }"
         @click="showDetails = id"
-        @delete="console.log('delete')"
+        @delete="() => deleteTrip(id)"
       />
     </template>
 

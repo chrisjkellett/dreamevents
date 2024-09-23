@@ -37,6 +37,8 @@ describe("First test", () => {
 
   it("can delete a trip", async () => {
     const page = await PageObject.create();
+    page.assertCardContent(1, "1st title");
     await page.deleteTrip(1);
+    page.assertCardContent(1, "2nd title");
   });
 });
