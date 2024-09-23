@@ -41,4 +41,10 @@ describe("First test", () => {
     await page.deleteTrip(1);
     page.assertCardContent(1, "2nd title");
   });
+
+  it("can edit a trip", async () => {
+    const page = await PageObject.create();
+    await page.editTrip(1);
+    // page.assertCardContent(1, "2nd title");
+  });
 });

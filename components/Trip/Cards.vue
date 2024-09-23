@@ -13,6 +13,7 @@ const { filteredTrips, showDetails, deleteTrip } = useData();
       :trip="trip"
       @click="showDetails = trip.id"
       @delete="() => deleteTrip(trip.id)"
+      @edit="console.log('editt')"
     />
   </div>
 

@@ -31,7 +31,9 @@ const shortDescription = computed(() => {
       <div class="flex items-center justify-between">
         <XLinkButton>See trip details</XLinkButton>
         <div class="flex gap-4">
-          <XLinkButton>Edit</XLinkButton>
+          <XLinkButton id="edit-trip" @click.stop="$emit('edit')">
+            Edit
+          </XLinkButton>
           <XLinkButton id="delete-trip" @click.stop="$emit('delete')">
             Delete
           </XLinkButton>
