@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import XLinkButton from "~/components/X/LinkButton.vue";
+import XLinkButton from "./X/LinkButton.vue";
 
 interface BaseTrip {
   title: string;
@@ -15,7 +15,9 @@ const shortDescription = computed(() => {
 </script>
 
 <template>
-  <div class="border flex h-52 rounded-2xl card">
+  <div
+    class="border flex h-52 rounded-2xl card cursor-pointer hover:border-slate-400"
+  >
     <div class="w-1/2">
       <img
         :src="trip.photo_url"
