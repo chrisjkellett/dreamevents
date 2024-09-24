@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import type { Trip } from "~/types/trips";
-// import data from "~/data.json";
 
 const { data: trips } = useFetch<Trip[]>(
   "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels"
 );
-
-// const trips = useState("trips", () => data);
 
 const filter = useState("filter", () => "all");
 
@@ -16,7 +13,7 @@ const currentlyViewedId = useState("show-details", () => 0);
 
 const editingId = useState("show-form", () => 0);
 
-const tripsFilteredBySearch = computed<Trip[]>(() => {
+const tripsFilteredBySearch = computed(() => {
   return (
     trips.value?.filter((t: Trip) => {
       const regex = new RegExp(searchText.value, "i");
@@ -25,20 +22,18 @@ const tripsFilteredBySearch = computed<Trip[]>(() => {
   );
 });
 
-const filteredTrips = computed<Trip[]>(() => {
+const filteredTrips = computed(() => {
   if (filter.value === "upcoming") {
-    return (
-      tripsFilteredBySearch.value?.filter((t: Trip) => t.status === "todo") ||
-      []
+    return tripsFilteredBySearch.value?.filter(
+      (t: Trip) => t.status === "todo"
     );
   }
   if (filter.value === "completed") {
-    return (
-      tripsFilteredBySearch.value?.filter((t: Trip) => t.status === "done") ||
-      []
+    return tripsFilteredBySearch.value?.filter(
+      (t: Trip) => t.status === "done"
     );
   }
-  return tripsFilteredBySearch.value || [];
+  return tripsFilteredBySearch.value;
 });
 
 function deleteTrip(id: number): void {
@@ -52,7 +47,7 @@ function updateTrip(id: number, updatedTrip: Trip): void {
   editingId.value = 0;
 }
 
-const currentlyViewedTrip = computed<Trip[]>(() => {
+const currentlyViewedTrip = computed(() => {
   return filteredTrips.value.find(
     (t: Trip) => t.id === currentlyViewedId.value
   );
@@ -61,7 +56,15 @@ const currentlyViewedTrip = computed<Trip[]>(() => {
 function updateStatusFromViewed() {
   const id = currentlyViewedId.value;
   const trip = currentlyViewedTrip.value;
-  updateTrip(id, { ...trip, status: trip.status === "todo" ? "done" : "todo" });
+
+  if (!trip) {
+    throw new Error("Currently viewed trip not found");
+  }
+
+  updateTrip(id, {
+    ...trip,
+    status: trip.status === "todo" ? "done" : "todo",
+  });
 }
 
 provide("data", {
