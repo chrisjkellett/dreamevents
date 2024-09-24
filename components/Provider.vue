@@ -9,9 +9,9 @@ const filter = useState("filter", () => "all");
 
 const searchText = useState("searchText", () => "");
 
-const showDetails = useState("show-details", () => undefined);
+const currentlyViewedId = useState("show-details", () => 0);
 
-const showForm = useState("show-form", () => 0);
+const editingId = useState("show-form", () => 0);
 
 const tripsFilteredBySearch = computed<Trip[]>(() => {
   return (
@@ -53,16 +53,31 @@ function editTrip(id: number): void {
   editingId.value = id;
 }
 
+const currentlyViewedTrip = computed<Trip>(() => {
+  return filteredTrips.value.find(
+    (t: Trip) => t.id === currentlyViewedId.value
+  );
+});
+
+function updateStatusFromViewed() {
+  const id = currentlyViewedId.value;
+  const trip = currentlyViewedTrip.value;
+  updateTrip(id, { ...trip, status: trip.status === "todo" ? "done" : "todo" });
+}
+
 provide("data", {
   filter,
   filteredTrips,
   searchText,
-  showDetails,
+  currentlyViewedId,
   editingId,
+  currentlyViewedTrip,
 
   deleteTrip,
   editTrip,
   updateTrip,
+
+  updateStatusFromViewed,
 });
 </script>
 

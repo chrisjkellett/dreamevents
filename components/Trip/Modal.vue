@@ -3,21 +3,22 @@ import useData from "~/composables/useData";
 import XModal from "~/components/X/Modal.vue";
 import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
 import Itinerary from "~/components/Trip/Itinerary.vue";
+import UpdateStatus from "./UpdateStatus.vue";
 
-const { showDetails, filteredTrips } = useData();
+const { currentlyViewedId, filteredTrips } = useData();
 
 const trip = computed(() => {
-  return filteredTrips.value.find((t) => t.id === showDetails.value);
+  return filteredTrips.value.find((t) => t.id === currentlyViewedId.value);
 });
 
 function onClose() {
-  showDetails.value = undefined;
+  currentlyViewedId.value = undefined;
 }
 </script>
 
 <template>
-  <div v-if="!!showDetails" class="trip-modal">
-    <XModal :show="!!showDetails" @update:show="onClose">
+  <div v-if="!!currentlyViewedId" class="trip-modal">
+    <XModal :show="!!currentlyViewedId" @update:show="onClose">
       <ModalCloseButton @click="onClose" />
       <img
         :src="trip.photo_url"
@@ -26,6 +27,7 @@ function onClose() {
       />
       <div class="flex flex-col justify-between p-6 gap-4">
         <h3 class="text-2xl font-semibold">{{ trip.title }}</h3>
+        <UpdateStatus />
         <p>{{ trip.description }}</p>
         <UDivider />
         <Itinerary :itinerary="trip.itinerary" />
