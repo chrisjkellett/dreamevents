@@ -33,10 +33,6 @@ const state = reactive({
   photo_url: tripInEditing.value?.photo_url || "",
   status: tripInEditing.value?.status || "",
 });
-
-function update() {
-  updateTrip(editingId.value, { ...state });
-}
 </script>
 
 <template>
@@ -75,7 +71,11 @@ function update() {
         </UFormGroup>
 
         <div class="md:max-w-80 mx-auto">
-          <XButton id="update-trip" type="submit" @click="update">
+          <XButton
+            id="update-trip"
+            type="submit"
+            @click="updateTrip(editingId, state)"
+          >
             Update Trip
           </XButton>
         </div>
