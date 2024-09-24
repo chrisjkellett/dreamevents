@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { object, string } from "yup";
+import schema from "~/schemas/trip";
 import useData from "~/composables/useData";
 import XModal from "~/components/X/Modal.vue";
 import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
@@ -16,15 +16,6 @@ function close() {
 
 const tripInEditing = computed(() => {
   return filteredTrips.value.find((t) => t.id === editingId.value);
-});
-
-const schema = object({
-  title: string().max(32, "Must be max 32 characters").required("Required"),
-  description: string()
-    .max(256, "Must be max 256 characters")
-    .required("Required"),
-  photo_url: string().max(32, "Must be max 32 characters").required("Required"),
-  status: string(),
 });
 
 const state = reactive({
