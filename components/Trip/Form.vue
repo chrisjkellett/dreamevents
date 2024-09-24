@@ -27,15 +27,15 @@ const schema = object({
 });
 
 const state = reactive({
-  title: tripInEditing.value.title || "",
-  description: tripInEditing.value.description || "",
-  photo_url: tripInEditing.value.photo_url || "",
-  status: tripInEditing.value.status || "",
+  title: tripInEditing.value?.title || "",
+  description: tripInEditing.value?.description || "",
+  photo_url: tripInEditing.value?.photo_url || "",
+  status: tripInEditing.value?.status || "",
 });
 </script>
 
 <template>
-  <div v-if="!!editingId">
+  <div>
     <XModal :show="!!editingId" @update:show="close">
       <ModalCloseButton @click="close" />
 
