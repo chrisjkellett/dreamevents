@@ -45,7 +45,8 @@ describe("First test", () => {
   it("can edit a trip", async () => {
     const page = await PageObject.create();
     await page.editTrip(1);
-    await page.updateTripName(1, "foobar");
-    // page.assertCardContent(1, "2nd title");
+    await page.updateTitle("UPDATED TITLE");
+    await page.submitUpdate();
+    page.assertCardContent(1, "UPDATED TITLE");
   });
 });

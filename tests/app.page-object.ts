@@ -1,7 +1,7 @@
 import { mountSuspended, registerEndpoint } from "@nuxt/test-utils/runtime";
 import { expect } from "vitest";
 import { VueWrapper } from "@vue/test-utils";
-import { h } from "vue";
+import { h, Teleport } from "vue";
 
 import app from "~/app.vue";
 import data from "./data.json";
@@ -22,7 +22,8 @@ export default class PageObject {
     const wrapper = await mountSuspended(app, {
       global: {
         stubs: {
-          UModal: true,
+          Teleport: true,
+          XModal: h("slot"),
         },
       },
     });
@@ -51,8 +52,12 @@ export default class PageObject {
     await this.wrapper.find("button#edit-trip").trigger("click");
   }
 
-  async updateTripName(n: number, name: string) {
-    // cannot do this until you stub the modal properly
+  async updateTitle(newTitle: string) {
+    await this.wrapper.find("#form-title").setValue(newTitle);
+  }
+
+  async submitUpdate() {
+    await this.wrapper.find("button#update-trip").trigger("click");
   }
 
   assertHasTripsVisible(n: number) {
