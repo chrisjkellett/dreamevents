@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { Trip } from "~/types/trips";
 import schema from "~/schemas/trip";
 import useData from "~/composables/useData";
 import XModal from "~/components/X/Modal.vue";
 import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
 import XInput from "~/components/X/Input.vue";
 import XTextArea from "~/components/X/TextArea.vue";
-import XSelectMenu from "~/components/X/SelectMenu.vue";
 import XButton from "~/components/X/Button.vue";
 
 const { editingId, filteredTrips, updateTrip } = useData();
@@ -15,7 +15,7 @@ function close() {
 }
 
 const tripInEditing = computed(() => {
-  return filteredTrips.value.find((t) => t.id === editingId.value);
+  return filteredTrips.value.find((t: Trip) => t.id === editingId.value);
 });
 
 const state = reactive({
@@ -48,13 +48,6 @@ const state = reactive({
 
         <UFormGroup label="Photo URL">
           <XInput v-model="state.photo_url" />
-        </UFormGroup>
-
-        <UFormGroup label="Status">
-          <XSelectMenu
-            v-model="state.status"
-            :options="['Todo', 'Completed']"
-          />
         </UFormGroup>
 
         <UFormGroup label="Itinerary">
