@@ -13,6 +13,7 @@ defineEmits<{
     size="lg"
     class="focus:ring-blue-500"
     color="gray"
+    :rows="8"
     :ui="{
       rounded: 'rounded-3xl',
       color: {
