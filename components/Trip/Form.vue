@@ -60,7 +60,7 @@ const state = reactive({
             type="submit"
             @click="updateTrip(editingId, state)"
           >
-            Update Trip
+            Save
           </XButton>
         </div>
       </UForm>
