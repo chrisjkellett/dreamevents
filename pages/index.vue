@@ -5,6 +5,9 @@ import TripSearch from "~/components/Trip/Search.vue";
 import TripTitle from "~/components/Trip/Title.vue";
 import TripModal from "~/components/Trip/Modal.vue";
 import TripEditing from "~/components/Trip/Editing.vue";
+import useData from "~/composables/useData";
+
+const { filter } = useData();
 </script>
 
 <template>
@@ -12,7 +15,7 @@ import TripEditing from "~/components/Trip/Editing.vue";
     <TripTitle />
     <TripSearch />
     <TripButtonGroup />
-    <TripCards />
+    <TripCards :key="filter" />
     <TripModal />
     <TripEditing />
   </div>

@@ -61,6 +61,9 @@ function updateStatusFromViewed() {
     throw new Error("Currently viewed trip not found");
   }
 
+  // unset filter before updating
+  filter.value = "all";
+
   updateTrip(id, {
     ...trip,
     status: trip.status === "todo" ? "done" : "todo",
