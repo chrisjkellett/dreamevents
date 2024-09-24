@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Trip } from "~/types/trips";
+// import data from "~/data.json";
 
 const { data: trips } = useFetch<Trip[]>(
   "https://my-json-server.typicode.com/mariosanz92/dream-travels-data/travels"
 );
+
+// const trips = useState("trips", () => data);
 
 const filter = useState("filter", () => "all");
 
@@ -49,11 +52,7 @@ function updateTrip(id: number, updatedTrip: Trip): void {
   editingId.value = 0;
 }
 
-function editTrip(id: number): void {
-  editingId.value = id;
-}
-
-const currentlyViewedTrip = computed<Trip>(() => {
+const currentlyViewedTrip = computed<Trip[]>(() => {
   return filteredTrips.value.find(
     (t: Trip) => t.id === currentlyViewedId.value
   );
@@ -74,7 +73,6 @@ provide("data", {
   currentlyViewedTrip,
 
   deleteTrip,
-  editTrip,
   updateTrip,
 
   updateStatusFromViewed,
