@@ -51,6 +51,10 @@ export default class PageObject {
     await this.wrapper.find("button#edit-trip").trigger("click");
   }
 
+  async updateTripName(n: number, name: string) {
+    // cannot do this until you stub the modal properly
+  }
+
   assertHasTripsVisible(n: number) {
     expect(this.wrapper.findAll(".card")).toHaveLength(n);
   }
