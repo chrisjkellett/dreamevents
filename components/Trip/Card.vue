@@ -16,13 +16,13 @@ const shortDescription = computed(() => {
 
 <template>
   <div
-    class="border flex h-52 rounded-2xl card cursor-pointer hover:border-slate-400"
+    class="border flex h-52 md:rounded-2xl card cursor-pointer hover:border-slate-400"
   >
     <div class="md:w-1/2 w-1/4">
       <img
         :src="trip.photo_url"
         alt="trip img"
-        class="h-full w-full object-cover rounded-tl-2xl rounded-bl-2xl"
+        class="h-full w-full object-cover md:rounded-tl-2xl md:rounded-bl-2xl"
       />
     </div>
     <div class="md:w-1/2 w-3/4 flex flex-col justify-between md:p-6 p-4">
