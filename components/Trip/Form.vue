@@ -47,12 +47,12 @@ function update() {
       <UForm
         :schema="schema"
         :state="state"
-        class="mt-16 mx-8 flex flex-col gap-4"
+        class="mt-16 mx-8 flex flex-col gap-4 edit-trip-form"
         :validate-on="['submit']"
       >
         <h1 class="text-xl font-bold">Edit trip</h1>
         <UFormGroup label="Name">
-          <XInput v-model="state.title" />
+          <XInput id="form-title" v-model="state.title" />
         </UFormGroup>
 
         <UFormGroup label="Description">
