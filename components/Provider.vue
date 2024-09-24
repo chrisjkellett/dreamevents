@@ -42,8 +42,15 @@ function deleteTrip(id: number): void {
   trips.value = trips.value?.filter((t: Trip) => t.id !== id) || [];
 }
 
+function updateTrip(id: number, updatedTrip: Trip): void {
+  trips.value =
+    trips.value?.map((t: Trip) => (t.id !== id ? t : updatedTrip)) || [];
+
+  editingId.value = 0;
+}
+
 function editTrip(id: number): void {
-  showForm.value = id;
+  editingId.value = id;
 }
 
 provide("data", {
@@ -51,10 +58,11 @@ provide("data", {
   filteredTrips,
   searchText,
   showDetails,
-  showForm,
+  editingId,
 
   deleteTrip,
   editTrip,
+  updateTrip,
 });
 </script>
 

@@ -8,7 +8,7 @@ import XTextArea from "~/components/X/TextArea.vue";
 import XSelectMenu from "~/components/X/SelectMenu.vue";
 import XButton from "~/components/X/Button.vue";
 
-const { editingId, filteredTrips } = useData();
+const { editingId, filteredTrips, updateTrip } = useData();
 
 function close() {
   editingId.value = 0;
@@ -33,6 +33,10 @@ const state = reactive({
   photo_url: tripInEditing.value?.photo_url || "",
   status: tripInEditing.value?.status || "",
 });
+
+function update() {
+  updateTrip(editingId.value, { ...state });
+}
 </script>
 
 <template>
@@ -71,7 +75,9 @@ const state = reactive({
         </UFormGroup>
 
         <div class="md:max-w-80 mx-auto">
-          <XButton type="submit" size="lg" block>Update Trip</XButton>
+          <XButton id="update-trip" type="submit" @click="update">
+            Update Trip
+          </XButton>
         </div>
       </UForm>
     </XModal>
