@@ -7,14 +7,18 @@ import XInput from "~/components/X/Input.vue";
 import XTextArea from "~/components/X/TextArea.vue";
 import XSelectMenu from "~/components/X/SelectMenu.vue";
 
-const { showForm } = useData();
+const { editingId, filteredTrips } = useData();
 
 function close() {
-  showForm.value = 0;
+  editingId.value = 0;
 }
 
+const tripInEditing = computed(() => {
+  return filteredTrips.value.find((t) => t.id === editingId.value);
+});
+
 const schema = object({
-  name: string().max(32, "Must be max 32 characters").required("Required"),
+  title: string().max(32, "Must be max 32 characters").required("Required"),
   description: string()
     .max(256, "Must be max 256 characters")
     .required("Required"),
@@ -23,16 +27,16 @@ const schema = object({
 });
 
 const state = reactive({
-  name: "",
-  description: "",
-  photo_url: "",
-  status: "",
+  title: tripInEditing.value.title || "",
+  description: tripInEditing.value.description || "",
+  photo_url: tripInEditing.value.photo_url || "",
+  status: tripInEditing.value.status || "",
 });
 </script>
 
 <template>
-  <div v-if="!!showForm">
-    <XModal :show="!!showForm" @update:show="close">
+  <div v-if="!!editingId">
+    <XModal :show="!!editingId" @update:show="close">
       <ModalCloseButton @click="close" />
 
       <UForm
@@ -43,7 +47,7 @@ const state = reactive({
       >
         <h1 class="text-xl font-bold">Edit trip</h1>
         <UFormGroup label="Name">
-          <XInput v-model="state.name" />
+          <XInput v-model="state.title" />
         </UFormGroup>
 
         <UFormGroup label="Description">
