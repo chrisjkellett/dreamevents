@@ -8,6 +8,6 @@ import XButton from "~/components/X/Button.vue";
     class="bg-zinc-900 sticky h-20 md:rounded-2xl flex items-center justify-between p-4"
   >
     <Logo />
-    <XButton>Create new trip</XButton>
+    <XButton color="white" disabled>Create new trip</XButton>
   </div>
 </template>
