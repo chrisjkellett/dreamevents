@@ -25,9 +25,11 @@ const shortDescription = computed(() => {
         class="h-full w-full object-cover rounded-tl-2xl rounded-bl-2xl"
       />
     </div>
-    <div class="w-1/2 flex flex-col justify-between p-6">
-      <h3 class="text-2xl font-semibold">{{ trip.title }}</h3>
-      <p>{{ shortDescription }}</p>
+    <div class="w-1/2 flex flex-col justify-between md:p-6 p-4">
+      <div class="max-h-[130px] overflow-hidden">
+        <h3 class="md:text-2xl text-lg font-semibold">{{ trip.title }}</h3>
+        <p class="md:text-md text-sm">{{ shortDescription }}</p>
+      </div>
       <div class="flex items-center justify-between">
         <XLinkButton>See trip details</XLinkButton>
         <div class="flex gap-4">
