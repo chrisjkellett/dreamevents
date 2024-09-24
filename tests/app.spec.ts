@@ -31,7 +31,7 @@ describe("First test", () => {
 
   it("can open modal to see all details of a trip", async () => {
     const page = await PageObject.create();
-    await page.clickCard(1);
+    await page.clickSeeTripDetails(1);
     page.assertModalVisible();
   });
 
@@ -49,4 +49,6 @@ describe("First test", () => {
     await page.submitUpdate();
     page.assertCardContent(1, "UPDATED TITLE");
   });
+
+  it("can show and update status of a trip", async () => {});
 });

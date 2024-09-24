@@ -1,23 +1,19 @@
 <script setup lang="ts">
+import type { Trip } from "~/types/trips";
 import XLinkButton from "~/components/X/LinkButton.vue";
+import useData from "~/composables/useData";
 
-interface BaseTrip {
-  title: string;
-  description: string;
-  photo_url: string;
-}
-
-const props = defineProps<{ trip: BaseTrip }>();
+const props = defineProps<{ trip: Trip }>();
 
 const shortDescription = computed(() => {
   return props.trip.description.split(".")[0] + "...";
 });
+
+const { currentlyViewedId } = useData();
 </script>
 
 <template>
-  <div
-    class="border flex h-52 md:rounded-2xl card cursor-pointer hover:border-slate-400"
-  >
+  <div class="border flex h-52 md:rounded-2xl card">
     <div class="md:w-1/2 w-1/4">
       <img
         :src="trip.photo_url"
@@ -31,12 +27,14 @@ const shortDescription = computed(() => {
         <p class="md:text-md text-sm">{{ shortDescription }}</p>
       </div>
       <div class="flex items-center justify-between">
-        <XLinkButton>See trip details</XLinkButton>
+        <XLinkButton id="see-details" @click="currentlyViewedId = trip.id">
+          See trip details
+        </XLinkButton>
         <div class="flex gap-4">
-          <XLinkButton id="edit-trip" @click.stop="$emit('edit')">
+          <XLinkButton id="edit-trip" @click="$emit('edit')">
             Edit
           </XLinkButton>
-          <XLinkButton id="delete-trip" @click.stop="$emit('delete')">
+          <XLinkButton id="delete-trip" @click="$emit('delete')">
             Delete
           </XLinkButton>
         </div>

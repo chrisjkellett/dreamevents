@@ -11,7 +11,6 @@ const { filteredTrips, currentlyViewedId, deleteTrip, editingId } = useData();
       v-for="trip in filteredTrips"
       :key="trip.id"
       :trip="trip"
-      @click="currentlyViewedId = trip.id"
       @delete="() => deleteTrip(trip.id)"
       @edit="editingId = trip.id"
     />

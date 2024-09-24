@@ -1,7 +1,7 @@
 import { mountSuspended, registerEndpoint } from "@nuxt/test-utils/runtime";
 import { expect } from "vitest";
 import { VueWrapper } from "@vue/test-utils";
-import { h, Teleport } from "vue";
+import { h } from "vue";
 
 import app from "~/app.vue";
 import data from "./data.json";
@@ -39,9 +39,8 @@ export default class PageObject {
     await this.wrapper.find("input#search-trips").setValue(text);
   }
 
-  async clickCard(n: number) {
-    await this.wrapper.findAll(".card")[n - 1].trigger("click");
-    await nextTick();
+  async clickSeeTripDetails(n: number) {
+    await this.wrapper.findAll("button#see-details")[n - 1].trigger("click");
   }
 
   async deleteTrip(n: number) {
