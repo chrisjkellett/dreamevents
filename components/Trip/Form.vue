@@ -6,6 +6,7 @@ import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
 import XInput from "~/components/X/Input.vue";
 import XTextArea from "~/components/X/TextArea.vue";
 import XSelectMenu from "~/components/X/SelectMenu.vue";
+import XButton from "~/components/X/Button.vue";
 
 const { editingId, filteredTrips } = useData();
 
@@ -68,6 +69,10 @@ const state = reactive({
         <UFormGroup label="Itinerary">
           <div>component goes here</div>
         </UFormGroup>
+
+        <div class="md:max-w-80 mx-auto">
+          <XButton type="submit" size="lg" block>Update Trip</XButton>
+        </div>
       </UForm>
     </XModal>
   </div>
