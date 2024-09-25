@@ -53,7 +53,12 @@ const state = reactive({
           <XInput v-model="state.photo_url" />
         </UFormGroup>
 
-        <UFormGroup label="Itinerary">
+        <UFormGroup label="Itinerary" class="relative">
+          <UIcon
+            name="i-heroicons:plus-circle"
+            class="w-5 h-5 cursor-pointer hover:bg-gray-700 absolute -top-6 right-0"
+            @click="console.log('push')"
+          />
           <div class="flex flex-col gap-4">
             <div
               v-for="(item, index) in state.itinerary"
