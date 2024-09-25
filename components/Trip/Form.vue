@@ -7,6 +7,7 @@ import ModalCloseButton from "~/components/X/ModalCloseButton.vue";
 import XInput from "~/components/X/Input.vue";
 import XTextArea from "~/components/X/TextArea.vue";
 import XButton from "~/components/X/Button.vue";
+import XSelectMenu from "~/components/X/SelectMenu.vue";
 
 const { editingId, filteredTrips, updateTrip } = useData();
 
@@ -35,7 +36,7 @@ const state = reactive({
       <UForm
         :schema="schema"
         :state="state"
-        class="mt-16 mx-8 flex flex-col gap-4 edit-trip-form"
+        class="my-16 mx-8 flex flex-col gap-4 edit-trip-form"
         :validate-on="['submit']"
       >
         <h1 class="text-xl font-bold">Edit trip</h1>
@@ -52,8 +53,26 @@ const state = reactive({
         </UFormGroup>
 
         <UFormGroup label="Itinerary">
-          <div v-for="item in state.itinerary" :key="item.day">
-            {{ item }}
+          <div class="flex flex-col gap-4">
+            <div
+              v-for="(item, index) in state.itinerary"
+              :key="item.day"
+              class="flex gap-2 bg-gray-100 p-4 rounded-lg"
+            >
+              <div class="w-1/4">
+                <XSelectMenu
+                  v-model="state.itinerary[index].day"
+                  :options="[1, 2]"
+                />
+              </div>
+              <div class="w-3/4 flex flex-col gap-2">
+                <XInput v-model="state.itinerary[index].location" />
+                <XTextArea
+                  v-model="state.itinerary[index].description"
+                  rows="4"
+                />
+              </div>
+            </div>
           </div>
         </UFormGroup>
 
