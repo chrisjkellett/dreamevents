@@ -52,7 +52,7 @@ const state = reactive({
         <UFormGroup label="Photo URL">
           <XInput v-model="state.photo_url" />
         </UFormGroup>
-        {{ state }}
+
         <UFormGroup label="Itinerary">
           <div class="flex flex-col gap-4">
             <div
