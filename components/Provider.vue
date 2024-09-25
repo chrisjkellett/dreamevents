@@ -71,7 +71,7 @@ function updateStatusFromViewed() {
 }
 
 function addNewItineraryItem() {
-  console.log("add");
+  // TODO
 }
 
 provide("data", {
