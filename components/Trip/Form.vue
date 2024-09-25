@@ -20,6 +20,7 @@ const tripInEditing = computed(() => {
 });
 
 const state = reactive({
+  id: tripInEditing.value?.id,
   title: tripInEditing.value?.title || "",
   description: tripInEditing.value?.description || "",
   photo_url: tripInEditing.value?.photo_url || "",
@@ -51,7 +52,7 @@ const state = reactive({
         <UFormGroup label="Photo URL">
           <XInput v-model="state.photo_url" />
         </UFormGroup>
-
+        {{ state }}
         <UFormGroup label="Itinerary">
           <div class="flex flex-col gap-4">
             <div
@@ -69,7 +70,7 @@ const state = reactive({
                 <XInput v-model="state.itinerary[index].location" />
                 <XTextArea
                   v-model="state.itinerary[index].description"
-                  rows="4"
+                  :rows="4"
                 />
               </div>
             </div>
