@@ -23,6 +23,7 @@ const state = reactive({
   description: tripInEditing.value?.description || "",
   photo_url: tripInEditing.value?.photo_url || "",
   status: tripInEditing.value?.status || "",
+  itinerary: tripInEditing.value?.itinerary,
 });
 </script>
 
@@ -51,7 +52,9 @@ const state = reactive({
         </UFormGroup>
 
         <UFormGroup label="Itinerary">
-          <div>component goes here</div>
+          <div v-for="item in state.itinerary" :key="item.day">
+            {{ item }}
+          </div>
         </UFormGroup>
 
         <div class="md:max-w-80 mx-auto">
