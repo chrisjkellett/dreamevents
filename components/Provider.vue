@@ -70,6 +70,10 @@ function updateStatusFromViewed() {
   });
 }
 
+function addNewItineraryItem() {
+  console.log("add");
+}
+
 provide("data", {
   filter,
   filteredTrips,
@@ -80,8 +84,8 @@ provide("data", {
 
   deleteTrip,
   updateTrip,
-
   updateStatusFromViewed,
+  addNewItineraryItem,
 });
 </script>
 

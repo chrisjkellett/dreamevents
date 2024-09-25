@@ -9,7 +9,7 @@ import XTextArea from "~/components/X/TextArea.vue";
 import XButton from "~/components/X/Button.vue";
 import XSelectMenu from "~/components/X/SelectMenu.vue";
 
-const { editingId, filteredTrips, updateTrip } = useData();
+const { editingId, filteredTrips, updateTrip, addNewItineraryItem } = useData();
 
 function close() {
   editingId.value = 0;
@@ -55,9 +55,10 @@ const state = reactive({
 
         <UFormGroup label="Itinerary" class="relative">
           <UIcon
+            id="add-itinerary-item"
             name="i-heroicons:plus-circle"
             class="w-5 h-5 cursor-pointer hover:bg-gray-700 absolute -top-6 right-0"
-            @click="console.log('push')"
+            @click="addNewItineraryItem"
           />
           <div class="flex flex-col gap-4">
             <div
