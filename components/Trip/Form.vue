@@ -63,7 +63,12 @@ const state = reactive({
               <div class="w-1/4">
                 <XSelectMenu
                   v-model="state.itinerary[index].day"
-                  :options="[1, 2]"
+                  :options="
+                    Array.from(
+                      { length: state.itinerary.length },
+                      (_, index) => index + 1
+                    )
+                  "
                 />
               </div>
               <div class="w-3/4 flex flex-col gap-2">
